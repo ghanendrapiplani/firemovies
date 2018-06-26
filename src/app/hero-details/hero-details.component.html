@@ -1,0 +1,11 @@
+<div  style="margin:2em; padding:2em" class="card" *ngIf="hero">
+
+  <h2>{{ hero.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{hero[0]}}</div>
+  <div>
+    <label>name:
+      <input class="input-group mb-3" value="{{hero[1]}}" placeholder="name"/>
+    </label>
+  </div>
+
+</div>

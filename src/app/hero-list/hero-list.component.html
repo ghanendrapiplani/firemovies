@@ -1,0 +1,9 @@
+<div *ngFor="let hero of heroObs | async">
+  <ul class="heroes">
+    <li>
+      <a routerLink="/detail/{{hero.id}}">
+        <span class="badge badge-primary badge-pill">id:{{hero.id}}</span>name:{{hero.name}}
+      </a>
+    </li>
+  </ul>
+</div>
