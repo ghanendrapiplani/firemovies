@@ -3,6 +3,7 @@ import {Hero} from '../hero';
 import {HeroService} from '../hero.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-hero-details',
@@ -12,6 +13,7 @@ import {Location} from '@angular/common';
 export class HeroDetailsComponent implements OnInit {
 
   hero: Hero;
+  id_: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,10 +24,19 @@ export class HeroDetailsComponent implements OnInit {
 
   ngOnInit() {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero('/heroes', id).subscribe((h) => {
-      console.log(h);
-      this.hero = h;
+    this.id_ = id;
+
+    this.heroService.getHero('/heroes', id).subscribe(val => {
+      this.hero = <Hero>val;
+      console.log('asdf ' + JSON.stringify(this.hero));
     });
+  }
+
+  updateHero(): void {
+    console.log('update this ' + JSON.stringify(this.hero));
+    if (this.heroService.updateHero('/heroes', this.hero.id, this.hero)) {
+      alert('Updation successful!');
+    }
   }
 
 }

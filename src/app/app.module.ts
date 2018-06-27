@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { AppRoutingModule } from './/app-routing.module';
 import {environment} from '../environments/environment';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {environment} from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule

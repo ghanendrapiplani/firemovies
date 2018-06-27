@@ -1,11 +1,13 @@
-<div  style="margin:2em; padding:2em" class="card" *ngIf="hero">
-
+<div style="margin:2em; padding:2em" class="form-group card" *ngIf="hero;else noHeroTemplate">
   <h2>{{ hero.name | uppercase }} Details</h2>
-  <div><span>id: </span>{{hero[0]}}</div>
+  <div><span>id: </span>{{hero.id}}</div>
   <div>
     <label>name:
-      <input class="input-group mb-3" value="{{hero[1]}}" placeholder="name"/>
+      <input class="input-group mb-3" [(ngModel)]="hero.name" value="{{hero.name}}" placeholder="name"/>
     </label>
   </div>
-
+  <button class="btn btn-primary" [disabled]="!hero.name" (click)="updateHero()">Click to update</button>
 </div>
+<ng-template #noHeroTemplate>
+  No hero exists with id={{id_}}
+</ng-template>

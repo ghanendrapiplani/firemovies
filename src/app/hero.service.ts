@@ -2,18 +2,16 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs';
 import {Hero} from './hero';
-import {promise} from 'selenium-webdriver';
-import filter = promise.filter;
-import {AngularFireModule} from 'angularfire2';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class HeroService {
   heroesObservable: Observable<any[]>;
+  hero: Hero;
 
-  constructor(private db: AngularFireDatabase,
-              private af: AngularFireModule) {
+  constructor(private db: AngularFireDatabase) {
   }
 
   getHeroes(pathStr: string): Observable<any[]> {
@@ -25,6 +23,19 @@ export class HeroService {
   }
 
   getHero(pathStr: string, id: number): Observable<any> {
-    return this.db.list(`${pathStr}/${id}`).valueChanges().;
+    console.log(`${pathStr}/${id}`);
+    return this.db.object(`${pathStr}/${id}`).valueChanges();
+  }
+
+  updateHero(pathStr: string, id: number, h: Hero): boolean {
+    return (this.fun(this.db.object(`${pathStr}/${id}`).update(h)));
+
+  }
+
+  fun(pro: Promise<any>): any {
+    return pro.then(_ => {
+      console.log('done updation');
+      return true;
+    });
   }
 }
