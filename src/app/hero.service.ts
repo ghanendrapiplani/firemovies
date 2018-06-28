@@ -29,7 +29,6 @@ export class HeroService {
 
   updateHero(pathStr: string, id: number, h: Hero): boolean {
     return (this.fun(this.db.object(`${pathStr}/${id}`).update(h)));
-
   }
 
   fun(pro: Promise<any>): any {

@@ -1,23 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
-import { AppComponent } from './app.component';
-import { HeroListComponent } from './hero-list/hero-list.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroDetailsComponent } from './hero-details/hero-details.component';
-import { AppRoutingModule } from './/app-routing.module';
+import {AppComponent} from './app.component';
+import {HeroListComponent} from './hero-list/hero-list.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {HeroDetailsComponent} from './hero-details/hero-details.component';
+import {AppRoutingModule} from './/app-routing.module';
 import {environment} from '../environments/environment';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MoviesDashboardComponent} from './movies-dashboard/movies-dashboard.component';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpErrorHandler} from './http-error-handler.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroListComponent,
     DashboardComponent,
-    HeroDetailsComponent
+    HeroDetailsComponent,
+    MoviesDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +30,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpErrorHandler],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
