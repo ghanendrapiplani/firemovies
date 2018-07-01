@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MoviesDashboardComponent} from './movies-dashboard/movies-dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpErrorHandler} from './http-error-handler.service';
+import { MoviesHomeComponent } from './movies-home/movies-home.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {HttpErrorHandler} from './http-error-handler.service';
     HeroListComponent,
     DashboardComponent,
     HeroDetailsComponent,
-    MoviesDashboardComponent
+    MoviesDashboardComponent,
+    MoviesHomeComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../environments/environment';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {RootObject} from './model/movie';
+import {RootObject} from './model/movies-ResultObject';
 import {catchError} from 'rxjs/operators';
 import {HandleError, HttpErrorHandler} from './http-error-handler.service';
 

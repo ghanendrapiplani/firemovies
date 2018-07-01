@@ -14,13 +14,3 @@ export interface Result {
   overview: string;
   release_date: string;
 }
-
-export interface RootObject {
-  page: number;
-  total_results: number;
-  total_pages: number;
-  results: Result[];
-}
-
-}
-

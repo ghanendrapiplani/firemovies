@@ -1,7 +1,6 @@
-<div style="margin: 1px" *ngFor="let movie of movieBlocks" class="card container-fluid col-4" height="200px">
-  <ul>
-    <img width="150em" height="250em" src="{{'http://image.tmdb.org/t/p/w185'+movie.poster_path}}"/>
-    <li >{{movie.id}}</li>
+<div  style="padding: 1px" *ngFor="let movie of movieBlocks" class="card container-fluid col-4" >
+  <ul style="background-color: #444444" height="500px" >
+    <img width="200px" height="250em" src="{{'http://image.tmdb.org/t/p/w185'+movie.poster_path}}"/>
     <li >{{movie.original_title}}</li>
     <li >{{movie.release_date}}</li>
   </ul>

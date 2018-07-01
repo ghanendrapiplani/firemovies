@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieService} from '../movie.service';
-import {Result, RootObject} from '../model/movie';
-import {forEach} from '@angular/router/src/utils/collection';
+import {Result} from '../model/movies-Result';
+import {RootObject} from '../model/movies-ResultObject';
+import {AuthService} from '../auth.service';
+import {isDefined} from '@angular/compiler/src/util';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-movies-dashboard',
@@ -12,7 +15,11 @@ export class MoviesDashboardComponent implements OnInit {
   rootObj: RootObject;
   movieBlocks: Result[] = [];
 
-  constructor(private movieService: MovieService) {
+  constructor(private movieService: MovieService, private authService: AuthService, private router: Router) {
+    if (!isDefined(authService.currentUser)) {
+      alert('login to continue');
+      router.navigate(['movies/home']);
+    }
   }
 
   ngOnInit() {
