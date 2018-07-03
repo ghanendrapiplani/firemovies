@@ -22,7 +22,7 @@ export class MovieService {
   }
 
   getMoviesSearch(movieQuery: string): Observable<any> {
-    const fullPath: string = mBasePath + `movie?query=${movieQuery}`;
+    const fullPath: string = mBasePath + `movie?q=${movieQuery}`;
     console.log('full path movies '+fullPath);
     return this.http.get<RootObject>(fullPath).pipe(
       catchError(this.handleError<any>('searchMovies', [])));
