@@ -16,14 +16,15 @@ export class MoviesDashboardComponent implements OnInit {
   movieBlocks: Result[] = [];
 
   constructor(private movieService: MovieService, private authService: AuthService, private router: Router) {
-    if (!isDefined(authService.currentUser)) {
-      alert('login to continue');
-      router.navigate(['movies/home']);
-    }
+    // if (!isDefined(authService.currentUser)) {
+    //   alert('login to continue');
+    //   router.navigate(['movies/home']);
+    // }
   }
 
   ngOnInit() {
     this.movieService.getMoviesSearch('avengers').subscribe(value => {
+      console.log('oninit dashboard');
       this.rootObj = <RootObject>value;
       this.movieBlocks = <Result[]> this.rootObj.results;
       console.log('asfd ' + this.movieBlocks);

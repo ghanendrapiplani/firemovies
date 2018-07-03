@@ -6,7 +6,6 @@ import {RootObject} from './model/movies-ResultObject';
 import {catchError} from 'rxjs/operators';
 import {HandleError, HttpErrorHandler} from './http-error-handler.service';
 
-const mApiKey: string = environment.movies_Db.apiKey;
 const mBasePath: string = environment.movies_Db.basePath;
 
 @Injectable({
@@ -23,8 +22,8 @@ export class MovieService {
   }
 
   getMoviesSearch(movieQuery: string): Observable<any> {
-    const fullPath: string = mBasePath + `search/movie?language=en-US&page=1&query=${movieQuery}&api_key=${mApiKey}`;
-    console.log(fullPath);
+    const fullPath: string = mBasePath + `movie?query=${movieQuery}`;
+    console.log('full path movies '+fullPath);
     return this.http.get<RootObject>(fullPath).pipe(
       catchError(this.handleError<any>('searchMovies', [])));
   }

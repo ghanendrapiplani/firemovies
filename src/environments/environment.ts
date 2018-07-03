@@ -13,8 +13,7 @@ export const environment = {
     messagingSenderId: '421521273176'
   },
   movies_Db: {
-    'apiKey': '22549f03035875b74480e9a2326d6434',
-    'basePath': 'https://api.themoviedb.org/3/'
+    'basePath': 'https://thawing-chamber-19957.herokuapp.com/'
   }
 };
 
