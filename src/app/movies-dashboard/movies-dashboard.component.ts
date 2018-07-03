@@ -14,21 +14,33 @@ import {Router} from '@angular/router';
 export class MoviesDashboardComponent implements OnInit {
   rootObj: RootObject;
   movieBlocks: Result[] = [];
+  scrollCallBack;
+  currentPage: number = 1;
+  finished: boolean = false;
 
   constructor(private movieService: MovieService, private authService: AuthService, private router: Router) {
-    // if (!isDefined(authService.currentUser)) {
-    //   alert('login to continue');
-    //   router.navigate(['movies/home']);
-    // }
   }
 
   ngOnInit() {
-    this.movieService.getMoviesSearch('avengers').subscribe(value => {
-      console.log('oninit dashboard');
+    this.getMovies(this.currentPage);
+  }
+
+  getMovies(pg: number): any {
+    if (this.finished) {
+      return;
+    }
+
+    return this.movieService.getMoviesSearch('avengers', this.currentPage).subscribe(value => {
+      console.log('searchMovies for page=' + this.currentPage);
       this.rootObj = <RootObject>value;
       this.movieBlocks = <Result[]> this.rootObj.results;
-      console.log('asfd ' + this.movieBlocks);
     });
+  }
+
+  onScroll(): any {
+    this.currentPage++;
+    console.log(this.currentPage + ' scroll func');
+    // this.getMovies(this.currentPage);
   }
 
 }

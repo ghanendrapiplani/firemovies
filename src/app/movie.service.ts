@@ -14,6 +14,7 @@ const mBasePath: string = environment.movies_Db.basePath;
 
 export class MovieService {
   private handleError: HandleError;
+  finished: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -21,9 +22,9 @@ export class MovieService {
     this.handleError = httpErrorHandler.createHandleError('MovieService');
   }
 
-  getMoviesSearch(movieQuery: string): Observable<any> {
-    const fullPath: string = mBasePath + `movie?q=${movieQuery}`;
-    console.log('full path movies '+fullPath);
+  getMoviesSearch(movieQuery: string, page: number): Observable<any> {
+    const fullPath: string = mBasePath + `movie?q=${movieQuery}&page=` + page;
+    console.log(page + 'full path movies ' + fullPath);
     return this.http.get<RootObject>(fullPath).pipe(
       catchError(this.handleError<any>('searchMovies', [])));
   }

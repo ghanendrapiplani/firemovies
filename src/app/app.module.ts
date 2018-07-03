@@ -15,7 +15,8 @@ import {MoviesDashboardComponent} from './movies-dashboard/movies-dashboard.comp
 import {HttpClientModule} from '@angular/common/http';
 import {HttpErrorHandler} from './http-error-handler.service';
 import { MoviesHomeComponent } from './movies-home/movies-home.component';
-
+import { OnScrollToBottomDirective } from './directives/on-scroll-to-bottom.directive';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MoviesHomeComponent } from './movies-home/movies-home.component';
     DashboardComponent,
     HeroDetailsComponent,
     MoviesDashboardComponent,
-    MoviesHomeComponent
+    MoviesHomeComponent,
+    OnScrollToBottomDirective
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { MoviesHomeComponent } from './movies-home/movies-home.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    InfiniteScrollModule
   ],
   providers: [HttpErrorHandler],
   bootstrap: [AppComponent]

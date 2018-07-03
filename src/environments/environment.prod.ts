@@ -1,3 +1,14 @@
 export const environment = {
-  production: true
+  production: true,
+  firebaseConfig: {
+    apiKey: 'AIzaSyD1h7arsTm2Py3aCWCzSpazs_bM4HwD_F8',
+    authDomain: 'testdbwithformatteddata.firebaseapp.com',
+    databaseURL: 'https://testdbwithformatteddata.firebaseio.com',
+    projectId: 'testdbwithformatteddata',
+    storageBucket: 'testdbwithformatteddata.appspot.com',
+    messagingSenderId: '421521273176'
+  },
+  movies_Db: {
+    'basePath': 'https://thawing-chamber-19957.herokuapp.com/'
+  }
 };
