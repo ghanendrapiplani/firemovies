@@ -1,18 +1,15 @@
-<div
-     *ngFor="let movie of movieBlocks"
-     class="card container-fluid col-4"
-     infiniteScroll
-     [scrollWindow]="true"
-     [infiniteScrollDistance]="0.000001"
-     [infiniteScrollThrottle]="800"
-     (scrolled)="onScroll()">
-
-  <ul style="background-color: #444444" height="500px">
+<div class=" row container-fluid"
+infiniteScroll 
+[infiniteScrollDistance]="1"
+[infiniteScrollThrottle]="800"
+(scrolled)="onScroll()">
+<div class="col-4" *ngFor="let movie of movieBlocks">
+  <ul class="card " style="background-color: #444444" height="500px">
     <img width="200px" height="250em" src="{{'http://image.tmdb.org/t/p/w185'+movie.poster_path}}"/>
     <li>{{movie.original_title}}</li>
     <li>{{movie.release_date}}</li>
   </ul>
-
+</div>
 </div>
 
 <div *ngIf="!finished">
