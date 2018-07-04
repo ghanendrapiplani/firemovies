@@ -1,7 +1,7 @@
 <div class=" row container-fluid"
-infiniteScroll 
-[infiniteScrollDistance]="1"
-[infiniteScrollThrottle]="800"
+infiniteScroll
+[infiniteScrollDistance]="30"
+[infiniteScrollThrottle]="600"
 (scrolled)="onScroll()">
 <div class="col-4" *ngFor="let movie of movieBlocks">
   <ul class="card " style="background-color: #444444" height="500px">

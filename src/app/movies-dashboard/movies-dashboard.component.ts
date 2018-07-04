@@ -5,6 +5,7 @@ import {RootObject} from '../model/movies-ResultObject';
 import {AuthService} from '../auth.service';
 import {isDefined} from '@angular/compiler/src/util';
 import {Router} from '@angular/router';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-movies-dashboard',
@@ -17,7 +18,7 @@ export class MoviesDashboardComponent implements OnInit {
   scrollCallBack;
   currentPage: number = 1;
   finished: boolean = false;
-  totalPgs:  number;
+  totalPgs: number;
 
   constructor(private movieService: MovieService, private authService: AuthService, private router: Router) {
   }
@@ -31,10 +32,18 @@ export class MoviesDashboardComponent implements OnInit {
       return;
     }
 
-    return this.movieService.getMoviesSearch('avengers', 1).subscribe(value => {
+    return this.movieService.getMoviesSearch('avengers', pg).subscribe(value => {
       console.log('searchMovies for page=' + this.currentPage);
       this.rootObj = <RootObject>value;
-      this.movieBlocks = <Result[]> this.rootObj.results;
+      if (this.movieBlocks.length === 0) {
+        this.movieBlocks = <Result[]> this.rootObj.results;
+      }
+      if (this.movieBlocks.length > 0) {
+        const listCopy = Object.assign([], this.movieBlocks);
+        listCopy.push(this.movieBlocks);
+
+      }
+      console.log('current page from response = ' + this.rootObj.page + ' %%% ' + this.movieBlocks.length);
       this.totalPgs = this.rootObj.total_pages;
     });
   }
@@ -42,10 +51,10 @@ export class MoviesDashboardComponent implements OnInit {
   onScroll(): any {
     this.currentPage++;
     console.log(this.currentPage + ' scroll func');
-    if(this.currentPage<=this.totalPgs){
+    if (this.currentPage <= this.totalPgs) {
       this.getMovies(this.currentPage);
-    }else{
-      this.finished=true;
+    } else {
+      this.finished = true;
     }
 
   }
