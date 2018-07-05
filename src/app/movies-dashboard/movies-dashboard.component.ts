@@ -35,14 +35,22 @@ export class MoviesDashboardComponent implements OnInit {
     return this.movieService.getMoviesSearch('avengers', pg).subscribe(value => {
       console.log('searchMovies for page=' + this.currentPage);
       this.rootObj = <RootObject>value;
-      if (this.movieBlocks.length === 0) {
-        this.movieBlocks = <Result[]> this.rootObj.results;
-      }
-      if (this.movieBlocks.length > 0) {
-        const listCopy = Object.assign([], this.movieBlocks);
-        listCopy.push(this.movieBlocks);
-
-      }
+	    this.rootObj.results.forEach((item)=>{
+        this.movieBlocks.push({vote_count: item.vote_count,
+          id: item.id,
+          video: item.video,
+          vote_average: item.vote_average,
+          title: item.title,
+          popularity: item.popularity,
+          poster_path: item.poster_path,
+          original_language: item.original_language,
+          original_title: item.original_title,
+          genre_ids: item.genre_ids,
+          backdrop_path: item.backdrop_path,
+          adult: item.adult,
+          overview: item.overview,
+          release_date: item.release_date})
+      });
       console.log('current page from response = ' + this.rootObj.page + ' %%% ' + this.movieBlocks.length);
       this.totalPgs = this.rootObj.total_pages;
     });
@@ -58,5 +66,9 @@ export class MoviesDashboardComponent implements OnInit {
     }
 
   }
+  
+  logArrayElements(element, index, array) {
+  console.log('a[' + index + '] = ' + <Result>(element).title);
+}
 
 }
