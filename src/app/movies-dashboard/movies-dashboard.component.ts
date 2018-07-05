@@ -36,6 +36,8 @@ export class MoviesDashboardComponent implements OnInit {
       console.log('searchMovies for page=' + this.currentPage);
       this.rootObj = <RootObject>value;
 	    this.rootObj.results.forEach((item)=>{
+		if(!isDefined(item.poster_path)){
+			item.poster_path='/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg'};
         this.movieBlocks.push({vote_count: item.vote_count,
           id: item.id,
           video: item.video,
